@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <TheHeader v-if="isStart === 'the-start'"></TheHeader>
+    <TheCurrentStep></TheCurrentStep>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TheHeader from "@/components/layout/TheHeader";
+import TheCurrentStep from "@/components/TheCurrentStep";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TheHeader,
+    TheCurrentStep,
+  },
+  computed: {
+    isStart() {
+      return this.$store.state.currentStep
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: #eeeeee;
+    padding: 0;
+    margin: 0;
+  }
+
+  .app {
+    padding: 25px 15px;
+  }
+
 </style>
