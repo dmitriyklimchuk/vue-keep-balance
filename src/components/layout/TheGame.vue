@@ -6,7 +6,7 @@
     <GamePopUp v-if="getGameStatus" title="GAME OVER">
       <template #default>
         <p>Unfortunately</p>
-        <p>Your Game is Over</p>
+        <p>{{ getPlayerName }} Game is Over</p>
         <p>Please Try Again</p>
       </template>
     </GamePopUp>
@@ -30,6 +30,9 @@ export default {
     getScore() {
       return this.$store.getters.leftSum;
     },
+    getPlayerName() {
+      return this.$store.state.playerName
+    }
   }
 }
 </script>

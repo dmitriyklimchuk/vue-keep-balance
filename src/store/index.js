@@ -29,6 +29,7 @@ export default createStore({
 
   },
   state: {
+    playerName: '',
     currentStep: "the-start",
     gameStatus: false,
     isPaused: true,
@@ -64,6 +65,9 @@ export default createStore({
   mutations: {
     changeStep(state,step) {
       state.currentStep = step;
+    },
+    getPlayerName(state, playerName) {
+      state.playerName = playerName;
     },
     setGameStatusOver(state) {
       state.gameStatus = true
@@ -120,8 +124,6 @@ export default createStore({
         console.log(this.getters.gameOverStatus);
         context.commit('setGameStatusOver');
         context.commit(RESET_STATE);
-        // alert('game over');
-        // context.dispatch(START_NEW_GAME);
       }, 0);
 
     },

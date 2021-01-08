@@ -40,7 +40,6 @@ export default {
       this.$store.dispatch(START_NEW_GAME);
     }
   }
-
 }
 
 </script>
@@ -71,7 +70,7 @@ export default {
       left: 0;
       height: 100vh;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.85);
       z-index: 10;
     }
 
@@ -80,8 +79,8 @@ export default {
       text-align: center;
 
       &-container {
-        background-color: #3a0061;
-        color: white;
+        background-color: #eeeeee;
+        color: rgba(0, 0, 0, 0.85);
         width: 100%;
         padding: 1rem;
       }
@@ -89,6 +88,7 @@ export default {
 
     &-section {
       padding: 1rem;
+      text-align: center;
     }
 
     &-menu {
