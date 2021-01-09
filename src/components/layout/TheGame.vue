@@ -1,12 +1,11 @@
 <template>
   <div class="app__game">
-    <p>YOUR SCORE {{ getScore }}</p>
     <GameTopbar></GameTopbar>
     <GameContainer></GameContainer>
     <GamePopUp v-if="getGameStatus" title="GAME OVER">
       <template #default>
-        <p>Unfortunately</p>
-        <p>{{ getPlayerName }} Game is Over</p>
+        <p>{{ getPlayerName }}, Unfortunately</p>
+        <p>Your Game is Over</p>
         <p>Please Try Again</p>
       </template>
     </GamePopUp>
@@ -26,9 +25,6 @@ export default {
   computed: {
     getGameStatus() {
       return this.$store.state.gameStatus;
-    },
-    getScore() {
-      return this.$store.getters.leftSum;
     },
     getPlayerName() {
       return this.$store.state.playerName

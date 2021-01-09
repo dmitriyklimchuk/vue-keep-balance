@@ -1,7 +1,7 @@
 <template>
   <div class="app__game-over white">
     <h1> {{ getPlayerName }} , Your Game is Over</h1>
-    <p>Player,You Can Restart Game</p>
+    <p>You Can Restart Game</p>
     <start-button
         class="black-text"
         @click="changeStep('the-game')">

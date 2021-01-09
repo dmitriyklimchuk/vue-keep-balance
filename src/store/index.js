@@ -25,9 +25,6 @@ function getBlockPower(array) {
 }
 
 export default createStore({
-  modules: {
-
-  },
   state: {
     playerName: '',
     currentStep: "the-start",
@@ -55,8 +52,6 @@ export default createStore({
     gameOverStatus(state, getters) {
       const {leftSum, rightSum, swingBending} = getters;
 
-      console.log(swingBending);
-      console.log(Math.abs(leftSum - rightSum));
       return swingBending > MAX_BENDING ||
              swingBending < MIN_BENDING ||
              Math.abs(leftSum - rightSum) > MAX_SIDES_DIFFERENCE
@@ -121,7 +116,6 @@ export default createStore({
         context.commit(ADD_RIGHT_SIDE_BLOCK);
 
       if (this.getters.gameOverStatus) setTimeout(() => {
-        console.log(this.getters.gameOverStatus);
         context.commit('setGameStatusOver');
         context.commit(RESET_STATE);
       }, 0);

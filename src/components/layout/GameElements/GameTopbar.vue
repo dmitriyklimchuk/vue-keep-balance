@@ -49,9 +49,8 @@ export default {
   &__game {
     &-topbar {
       width: 90%;
-      margin: 0 auto;
+      margin: 20px auto 0 ;
       background-color: #f5f5f5;
-      //color: $secondary-color;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
       padding: 20px;
@@ -77,10 +76,6 @@ export default {
         justify-content: center;
         align-items: center;
         transition: background-color 0.4s ease-in-out;
-
-        &:hover {
-          //background-color: lighten($primary-color, 10%);
-        }
       }
     }
   }

@@ -89,6 +89,8 @@ export default {
     &-section {
       padding: 1rem;
       text-align: center;
+      font-size: 22px;
+      text-transform: uppercase;
     }
 
     &-menu {
