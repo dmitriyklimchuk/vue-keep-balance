@@ -15,3 +15,9 @@ export function generateRandomBlock() {
         height
     }
 }
+
+export function getBlockPower(array) {
+    return array.reduce((acc, item) => {
+        return acc += item.weight * item.offset
+    }, 0)
+}
