@@ -2,13 +2,15 @@
   <div class="app__game">
     <GameTopbar></GameTopbar>
     <GameContainer></GameContainer>
-    <GamePopUp v-if="getGameStatus" title="GAME OVER">
-      <template #default>
-        <p>{{ getPlayerName }}, Unfortunately</p>
-        <p>Your Game is Over</p>
-        <p>Please Try Again</p>
-      </template>
-    </GamePopUp>
+    <transition>
+      <GamePopUp :open='getGameStatus' title="GAME OVER">
+        <template #default>
+          <p>{{ getPlayerName }}, Unfortunately</p>
+          <p>Your Game is Over</p>
+          <p>Please Try Again</p>
+        </template>
+      </GamePopUp>
+    </transition>
   </div>
 </template>
 
@@ -33,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .app {
   &__game {
@@ -51,6 +53,38 @@ a {
 
 ul {
   list-style: none;
+}
+
+.v-enter {
+  &-from {
+    opacity: 0;
+    transform: rotateX(-9999px);
+  }
+
+  &-active {
+    transition: all 1s ease-in-out;
+  }
+
+  &-to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.v-leave {
+  &-from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &-active {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &-to {
+    opacity: 0;
+    transform: translateX(9999px);
+  }
 }
 </style>
 

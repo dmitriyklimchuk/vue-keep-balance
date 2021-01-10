@@ -1,22 +1,26 @@
 <template>
   <template>
     <teleport to="body">
-      <div class="app__popup-overlay"></div>
-      <dialog open class="app__popup">
-        <header class="app__popup-heading-container">
-          <slot name="header">
-            <h2 class="app__popup-heading"> {{ title }} </h2>
-          </slot>
-        </header>
-        <section class="app__popup-section">
-          <slot></slot>
-        </section>
-        <menu class="app__popup-menu">
-          <slot name="actions">
+      <transition name="app__popup-overlay">
+        <div v-if="open" class="app__popup-overlay"></div>
+      </transition>
+      <transition name="app__popup">
+        <dialog open v-if="open" class="app__popup">
+          <header class="app__popup-heading-container">
+            <slot name="header">
+              <h2 class="app__popup-heading"> {{ title }} </h2>
+            </slot>
+          </header>
+          <section class="app__popup-section">
+            <slot></slot>
+          </section>
+          <menu class="app__popup-menu">
+            <slot name="actions">
               <BaseButton class="app__popup-menu-button" @click="restartGame">Play again</BaseButton>
-          </slot>
-        </menu>
-      </dialog>
+            </slot>
+          </menu>
+        </dialog>
+      </transition>
     </teleport>
   </template>
 </template>
@@ -33,7 +37,12 @@ export default {
     title: {
       type: String,
       required: false
+    },
+    open: {
+      type: Boolean,
+      required: true
     }
+
   },
   methods: {
     restartGame() {
@@ -64,6 +73,39 @@ export default {
       width: 40rem;
     }
 
+    &-enter {
+      &-from {
+        opacity: 0;
+        transform: translateY(-9999px);
+      }
+
+      &-active {
+        transition: all 0.3s ease-in-out;
+      }
+
+      &-to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    &-leave {
+      &-from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      &-active {
+        transition: all 0.3s ease-in-out;
+      }
+
+      &-to {
+        opacity: 0;
+        transform: translateY(9999px);
+
+      }
+    }
+
     &-overlay {
       position: fixed;
       top: 0;
@@ -72,6 +114,34 @@ export default {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.85);
       z-index: 10;
+
+      &-enter {
+        &-from {
+          opacity: 0;
+        }
+
+        &-active {
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        &-to {
+          opacity: 1;
+        }
+      }
+
+      &-leave {
+        &-from {
+          opacity: 1;
+        }
+
+        &-active {
+          transition: all 0.3s ease-in-out;
+        }
+
+        &-to {
+          opacity: 0;
+        }
+      }
     }
 
     &-heading {

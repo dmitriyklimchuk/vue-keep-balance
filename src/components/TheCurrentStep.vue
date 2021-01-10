@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col s12 center-align">
-          <component :is="getCurrentStep"></component>
+          <transition appear name="app__active-step">
+            <component :is="getCurrentStep"></component>
+          </transition>
         </div>
       </div>
     </div>
@@ -41,10 +43,44 @@ export default {
 
 </script>
 
-<style lang="scss">
-.app__active-step {
-  border-radius: 12px;
-  padding: 20px;
+<style lang="scss" scoped>
+.app {
+  &__active-step {
+    border-radius: 12px;
+    padding: 20px;
+
+    &-enter {
+      &-from {
+        opacity: 0;
+        transform: rotateX(-9999px);
+      }
+
+      &-active {
+        transition: all 1s ease-in-out;
+      }
+
+      &-to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    &-leave {
+      &-from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      &-active {
+        transition: all 0.2s ease-in-out;
+      }
+
+      &-to {
+        opacity: 0;
+        transform: translateX(9999px);
+      }
+    }
+  }
 }
 
 </style>

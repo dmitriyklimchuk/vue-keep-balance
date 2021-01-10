@@ -1,9 +1,11 @@
 <template>
   <form class="app__start-form">
-    <input type="text" class="app__start-input" placeholder="NAME" ref="inputGetNameStart">
-    <div v-show="isInputEmpty" class="app__start-error">
-      <p><i class="fas fa-exclamation-circle app__start-error-icon"></i>Please write your name!!!</p>
-    </div>
+    <input type="text" @keyup="isInputEmpty=false" class="app__start-input" placeholder="NAME" ref="inputGetNameStart">
+    <transition name="app__start-error">
+      <div v-if="isInputEmpty" class="app__start-error">
+        <p><i class="fas fa-exclamation-circle app__start-error-icon"></i>Please write your name!!!</p>
+      </div>
+    </transition>
     <BaseButton type="submit" class="app__start-button" @click="startGame('the-game')">
       <i class="fas fa-gamepad app__start-button-icon"></i>
       Let`s Start The Game
@@ -44,7 +46,7 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .app {
   &__start {
 
@@ -87,6 +89,34 @@ export default {
 
       &-icon {
         margin-right: 5px;
+      }
+
+      &-enter {
+        &-from {
+          opacity: 0;
+        }
+
+        &-active {
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        &-to {
+          opacity: 1;
+        }
+      }
+
+      &-leave {
+        &-from {
+          opacity: 1;
+        }
+
+        &-active {
+          transition: all 0.3s ease-in-out;
+        }
+
+        &-to {
+          opacity: 0;
+        }
       }
     }
   }
